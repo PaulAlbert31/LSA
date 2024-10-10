@@ -1,4 +1,4 @@
-#ECCV24: An accurate detection is not all you need to combat label noise in web-noisy datasets.
+# ECCV24: An accurate detection is not all you need to combat label noise in web-noisy datasets.
 
 [![ECCV 2024](https://img.shields.io/badge/ECCV-2024-blue)](https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/06511.pdf)
 [![Paper](https://img.shields.io/badge/Paper-PDF-orange)](https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/06511.pdf)
@@ -12,14 +12,14 @@ This repository provides the official codebase for our ECCV 2024 paper: "An accu
 
 ## Architecture
 
-![PLS-LSA Architecture](https://github.com/PaulAlbert31/LSA/images/6511_thumb.png)
+![PLS-LSA Architecture](https://github.com/PaulAlbert31/LSA/blob/main/images/6511_thumb.png)
 
 
 ## Getting Started
 
 ### Requirements
 
-All dependencies are listed in the [lsa.yml](https://github.com/PaulAlbert31/LSA/lsa.yml) file.
+All dependencies are listed in the [lsa.yml](https://github.com/PaulAlbert31/LSA/blob/main/lsa.yml) file.
 
 
 ### Installation
@@ -43,7 +43,7 @@ This repository supports the following noisy datasets:
 * **ImageNet2012**: Download the test set from [ImageNet](https://image-net.org/download.php) for evaluation.
 
 ### Dataset Paths
-Update the `[mypath.py](https://github.com/PaulAlbert31/LSA/lsa.yml)` file with the paths to the downloaded datasets.
+Update the `[mypath.py](https://github.com/PaulAlbert31/LSA/blob/main/lsa.yml)` file with the paths to the downloaded datasets.
 
 ## Training
 
@@ -55,27 +55,27 @@ Pretrain using unsupervised algorithms (SimCLR) from the [solo-learn](https://gi
 
 
 ### PLS-LSA and PLS-LSA+
-Run experiments using the `[train.sh](https://github.com/PaulAlbert31/LSA/train.sh)` file, which includes examples for:
+Run experiments using the `[train.sh](https://github.com/PaulAlbert31/LSA/blob/main/train.sh)` file, which includes examples for:
 	+ PLS-LSA and PLS-LSA+ on CNWL, Webvision, and Webly-fg datasets
 	+ ViTs pre-trained using CLIP
 
 
 ## Getting Started
 1. Download and prepare the datasets.
-2. Update `[mypath.py](https://github.com/PaulAlbert31/LSA/lsa.yml)` with dataset paths.
+2. Update `[mypath.py](https://github.com/PaulAlbert31/LSA/blob/main/lsa.yml)` with dataset paths.
 3. Pretrain using contrastive learning (optional).
-4. Run experiments using `[train.sh](https://github.com/PaulAlbert31/LSA/train.sh)`.
+4. Run experiments using `[train.sh](https://github.com/PaulAlbert31/LSA/blob/main/train.sh)`.
 
-##Results
+## Results
 
 #### Performance on Benchmark Datasets
 
 | Dataset | Result |
 | --- | --- |
-| CNWL | ![CNWL](https://github.com/PaulAlbert31/LSA/images/CNWL.png) |
-| Webvision | ![Webvision](https://github.com/PaulAlbert31/LSA/images/Webvision.png) |
-| Webly-fg | ![Webly-fg](https://github.com/PaulAlbert31/LSA/images/Webly-fg.png) |
-| CNWL (CLIP) | ![CNWL CLIP](https://github.com/PaulAlbert31/LSA/images/CNWL_CLIP.png) |
+| CNWL | ![CNWL](https://github.com/PaulAlbert31/LSA/blob/main/images/CNWL.png) |
+| Webvision | ![Webvision](https://github.com/PaulAlbert31/LSA/blob/main/images/Webvision.png) |
+| Webly-fg | ![Webly-fg](https://github.com/PaulAlbert31/LSA/blob/main/images/Webly-fg.png) |
+| CNWL (CLIP) | ![CNWL CLIP](https://github.com/PaulAlbert31/LSA/blob/main/images/CNWL_CLIP.png) |
 
 
 ### Reproduction Note
