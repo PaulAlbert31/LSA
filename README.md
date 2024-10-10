@@ -56,15 +56,15 @@ Pretrain using unsupervised algorithms (SimCLR) from the [solo-learn](https://gi
 
 ### PLS-LSA and PLS-LSA+
 Run experiments using the [train.sh](https://github.com/PaulAlbert31/LSA/blob/main/train.sh) file, which includes examples for:
-	+ PLS-LSA and PLS-LSA+ on CNWL, Webvision, and Webly-fg datasets
-	+ ViTs pre-trained using CLIP
+	- PLS-LSA and PLS-LSA+ on CNWL, Webvision, and Webly-fg datasets
+	- PLS-LSA and PLA-LSA+ for ViTs pre-trained using CLIP
 
 
 ## Getting Started
 1. Download and prepare the datasets.
-2. Update [mypath.py](https://github.com/PaulAlbert31/LSA/blob/main/lsa.yml) with dataset paths.
+2. Update [mypath.py](https://github.com/PaulAlbert31/LSA/blob/main/mypath.py) with dataset paths.
 3. Pretrain using contrastive learning (optional).
-4. Run experiments using `[train.sh](https://github.com/PaulAlbert31/LSA/blob/main/train.sh)`.
+4. Run experiments using [train.sh](https://github.com/PaulAlbert31/LSA/blob/main/train.sh).
 
 ## Results
 
