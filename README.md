@@ -1,4 +1,4 @@
-# ECCV24: An accurate detection is not all you need to combat label noise in web-noisy datasets.
+# Official code for the PLS-LSA algorithm, accepted at ECCV 2024: An accurate detection is not all you need to combat label noise in web-noisy datasets.
 
 [![ECCV 2024](https://img.shields.io/badge/ECCV-2024-blue)](https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/06511.pdf)
 [![Paper](https://img.shields.io/badge/Paper-PDF-orange)](https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/06511.pdf)
