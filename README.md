@@ -38,12 +38,12 @@ We use LightningLite's Fabric [fabric](https://github.com/Lightning-AI/pytorch-l
 This repository supports the following noisy datasets:
 
 * **Webvision**: Download the dataset from [Webvision 2017](https://data.vision.ee.ethz.ch/cvl/webvision/dataset2017.html) and follow the instructions. For faster training, we use the first 50 classes (mini-Webvision).
-* **Controlled Noisy Web Label (CNWL)**: Download the dataset from the [official webpage](https://google.github.io/controlled-noisy-web-labels/index.html) using TFrecords from [FaMUS repository](https://github.com/youjiangxu/FaMUS?tab=readme-ov-file#dataset).
+* **Controlled Noisy Web Label (CNWL)**: Download the dataset from the [official webpage](https://google.github.io/controlled-noisy-web-labels/index.html) or using TFrecords from [FaMUS repository](https://github.com/youjiangxu/FaMUS?tab=readme-ov-file#dataset).
 * **Webly-fg**: Download the dataset from the official [repository](https://github.com/NUST-Machine-Intelligence-Laboratory/weblyFG-dataset).
 * **ImageNet2012**: Download the test set from [ImageNet](https://image-net.org/download.php) for evaluation.
 
 ### Dataset Paths
-Update the `[mypath.py](https://github.com/PaulAlbert31/LSA/blob/main/lsa.yml)` file with the paths to the downloaded datasets.
+Update the [mypath.py](https://github.com/PaulAlbert31/LSA/blob/main/lsa.yml) file with the paths to the downloaded datasets.
 
 ## Training
 
@@ -55,14 +55,14 @@ Pretrain using unsupervised algorithms (SimCLR) from the [solo-learn](https://gi
 
 
 ### PLS-LSA and PLS-LSA+
-Run experiments using the `[train.sh](https://github.com/PaulAlbert31/LSA/blob/main/train.sh)` file, which includes examples for:
+Run experiments using the [train.sh](https://github.com/PaulAlbert31/LSA/blob/main/train.sh) file, which includes examples for:
 	+ PLS-LSA and PLS-LSA+ on CNWL, Webvision, and Webly-fg datasets
 	+ ViTs pre-trained using CLIP
 
 
 ## Getting Started
 1. Download and prepare the datasets.
-2. Update `[mypath.py](https://github.com/PaulAlbert31/LSA/blob/main/lsa.yml)` with dataset paths.
+2. Update [mypath.py](https://github.com/PaulAlbert31/LSA/blob/main/lsa.yml) with dataset paths.
 3. Pretrain using contrastive learning (optional).
 4. Run experiments using `[train.sh](https://github.com/PaulAlbert31/LSA/blob/main/train.sh)`.
 
