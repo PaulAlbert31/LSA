@@ -57,7 +57,7 @@ def main():
         args.cont = True
     
     seeds = {'1': round(torch.exp(torch.ones(1)).item()*1e3), '2': round(torch.acos(torch.zeros(1)).item() * 2), '3':round(torch.sqrt(torch.tensor(2.)).item()*1e6)}
-    if args.seed in seeds.keys():        
+    if str(args.seed) in seeds.keys():
         torch.manual_seed(seeds[str(args.seed)])
         torch.cuda.manual_seed_all(seeds[str(args.seed)])  # GPU seed
         random.seed(seeds[str(args.seed)])  # python seed for image transformation                                                    
