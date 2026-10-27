@@ -764,20 +764,22 @@ class Trainer_PLS_improved(Trainer_PLS):
                 logits = torch.matmul(feats1_cont_n, feats2_cont_n.t())
                 
                 labels = torch.argmax(target_cont, dim=1)
-                labels = F.one_hot(labels, num_classes=self.args.num_class)
-                labels1 = labels.float()
+                labels = F.one_hot(labels, num_classes=self.args.num_class).float()
+                #Pseudo-loss guided contrastive targets (PLS): untrusted pseudo-labels fall back to instance discrimination
+                w = weights.view(-1, 1).to(labels)
+                labels1 = torch.cat((w * labels, (1 - w) * torch.eye(len(labels)).to(labels)), dim=1)
                 labels1 = labels1.mm(labels1.t())
-                    
+
                 if self.args.mixup:
                     labels2 = labels1[o]
-                
+
                 logits = torch.div(logits, self.args.mu) #Contrastive temperature
 
                 if self.args.mixup:
                     labels1, labels2 = labels1.to(logits.device), labels2.to(logits.device)
-                    loss_u = (lam * multi_class_loss(logits, labels1) / labels1.sum(dim=-1) + (1-lam) * multi_class_loss(logits, labels2) / labels2.sum(dim=-1))                
+                    loss_u = (lam * multi_class_loss(logits, labels1) / labels1.sum(dim=-1) + (1-lam) * multi_class_loss(logits, labels2) / labels2.sum(dim=-1))
                 else:
-                    loss_u = multi_class_loss(logits, labels) / labels.sum(dim=-1)
+                    loss_u = multi_class_loss(logits, labels1) / labels1.sum(dim=-1)
                 loss_u = loss_u.mean()
             else:
                 loss_f = multi_class_loss(feats1_cont, torch.randn(feats1_cont.shape).to(feats1_cont)) #0. * loss hack for DDP unused params
@@ -1058,7 +1060,8 @@ class Trainer_cotrain_vote(Trainer_cotrain):
         self.is_clean_other, self.is_noisy_other = self.is_clean, self.is_noisy
         self.weights = (self.weights+self.weights_other)/2
         self.weights[~self.is_noisy] = 1
-        
+        self.weights_other = self.weights
+
         return (preds1 * preds2)
 
 
@@ -1083,7 +1086,8 @@ class Trainer_cotrain_ours(Trainer_cotrain):
         self.is_clean_other, self.is_noisy_other = self.is_clean, self.is_noisy
         self.weights = (self.weights+self.weights_other)/2
         self.weights[~self.is_noisy] = 1
-        
+        self.weights_other = self.weights #Both networks train with the voted pseudo-label weights
+
         return (preds1 * preds2)
-    
-    
+
+
