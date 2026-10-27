@@ -18,13 +18,13 @@ done
 #Webly-fg experiments, datasets to be found at https://github.com/NUST-Machine-Intelligence-Laboratory/weblyFG-dataset
 #Download Inet weights from https://pytorch.org/vision/0.12/_modules/torchvision/models/resnet.html#resnet50:  https://download.pytorch.org/models/resnet50-0676ba61.pth and place specify the weight path using the --pretrained argument
 for seed in 1 2 3; do
-    python main.py --net resnet50 --dataset web-bird --epochs 110 --batch-size 32 --lr 0.006 --seed $seed --exp-name pls_lsa_inet --mixup --conv 7 --pls --alternate-ep linear loss --pretrained pretrained/resnet50_imagenet.pth.pth
-    python main.py --net resnet50 --dataset web-car --epochs 110 --batch-size 32 --lr 0.006 --seed $seed --exp-name pls_lsa_inet --mixup --conv 7 --pls --alternate-ep linear loss --pretrained pretrained/resnet50_imagenet.pth.pth
-    python main.py --net resnet50 --dataset web-aircraft --epochs 110 --batch-size 32 --lr 0.006 --seed $seed --exp-name pls_lsa_inet --mixup --conv 7 --pls --alternate-ep linear loss --pretrained pretrained/resnet50_imagenet.pth.pth
+    python main.py --net resnet50 --dataset web-bird --epochs 110 --batch-size 32 --lr 0.006 --seed $seed --exp-name pls_lsa_inet --mixup --conv 7 --pls --alternate-ep linear loss --pretrained pretrained/resnet50_imagenet.pth
+    python main.py --net resnet50 --dataset web-car --epochs 110 --batch-size 32 --lr 0.006 --seed $seed --exp-name pls_lsa_inet --mixup --conv 7 --pls --alternate-ep linear loss --pretrained pretrained/resnet50_imagenet.pth
+    python main.py --net resnet50 --dataset web-aircraft --epochs 110 --batch-size 32 --lr 0.006 --seed $seed --exp-name pls_lsa_inet --mixup --conv 7 --pls --alternate-ep linear loss --pretrained pretrained/resnet50_imagenet.pth
 
-    python main.py --net resnet50 --dataset web-bird --epochs 110 --batch-size 32 --lr 0.006 --seed $seed --exp-name pls_lsaplus_inet --mixup --conv 7 --co-train --alternate-ep linear loss --pretrained pretrained/resnet50_imagenet.pth.pth
-    python main.py --net resnet50 --dataset web-car --epochs 110 --batch-size 32 --lr 0.006 --seed $seed --exp-name pls_lsaplus_inet --mixup --conv 7 --co-train --alternate-ep linear loss --pretrained pretrained/resnet50_imagenet.pth.pth 
-    python main.py --net resnet50 --dataset web-aircraft --epochs 110 --batch-size 32 --lr 0.006 --seed $seed --exp-name pls_lsaplus_inet --mixup --conv 7 --co-train --alternate-ep linear loss --pretrained pretrained/resnet50_imagenet.pth.pth
+    python main.py --net resnet50 --dataset web-bird --epochs 110 --batch-size 32 --lr 0.006 --seed $seed --exp-name pls_lsaplus_inet --mixup --conv 7 --co-train --alternate-ep linear loss --pretrained pretrained/resnet50_imagenet.pth
+    python main.py --net resnet50 --dataset web-car --epochs 110 --batch-size 32 --lr 0.006 --seed $seed --exp-name pls_lsaplus_inet --mixup --conv 7 --co-train --alternate-ep linear loss --pretrained pretrained/resnet50_imagenet.pth 
+    python main.py --net resnet50 --dataset web-aircraft --epochs 110 --batch-size 32 --lr 0.006 --seed $seed --exp-name pls_lsaplus_inet --mixup --conv 7 --co-train --alternate-ep linear loss --pretrained pretrained/resnet50_imagenet.pth
 done
 
 #CLIP experiments.

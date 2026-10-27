@@ -33,7 +33,7 @@ class Trainer(nn.Module):
         self.trainset = self.train_loader.dataset
         self.args.num_class = self.train_loader.dataset.num_class
 
-        self.accelerator = Fabric(strategy='ddp', precision='16-mixed') #Change here to train on multiple GPUs
+        self.accelerator = Fabric(devices=1, strategy='ddp', precision='16-mixed') #Multi-GPU is not supported: devices="auto" would launch DDP on every visible GPU
         self.accelerator.launch()
         self.broadcast = lambda x: self.accelerator.broadcast(x)
         self.gather = lambda x: self.accelerator.all_gather(x)
@@ -135,9 +135,12 @@ class Trainer(nn.Module):
                 model = torchvision.models.resnet50(weights="IMAGENET1K_V1")
             elif self.args.pretrained != 'imagenet':
                 model = torchvision.models.resnet50()
-                dic = torch.load(self.args.pretrained, map_location=torch.device('cpu'))["state_dict"]                    
-                dic = {k.replace('backbone.','').replace('downsample','shortcut').replace('projector', 'contrastive'): v for k,v in dic.items()}
-                model.load_state_dict(dic, strict=False)         
+                dic = torch.load(self.args.pretrained, map_location=torch.device('cpu'))
+                dic = dic.get("state_dict", dic) #torchvision .pth files are raw state dicts
+                #torchvision ResNet50 names its projection shortcuts 'downsample', keep them
+                dic = {k.replace('backbone.',''): v for k,v in dic.items()}
+                missing = model.load_state_dict(dic, strict=False).missing_keys
+                print('Missing pretrained keys', missing)
                 
             model = ResNet_wrapper(model, self.args.num_class, self.args.proj_size, dim=2048)
         elif self.args.net == "inception":
@@ -145,7 +148,7 @@ class Trainer(nn.Module):
             model = InceptionResNetV2(self.args.num_class)
             if self.args.pretrained is not None:
                 dic = torch.load(self.args.pretrained, map_location=torch.device('cpu'))["state_dict"]
-                dic = {k.replace('backbone.','').replace('downsample','shortcut').replace('projector', 'contrastive'): v for k, v in dict.items()}
+                dic = {k.replace('backbone.','').replace('downsample','shortcut').replace('projector', 'contrastive'): v for k, v in dic.items()}
                 model.load_state_dict(dic, strict=False)
             model = Inception_wrapper(model, self.args.num_class, self.args.proj_size, dim=1536)
             
@@ -671,6 +674,7 @@ class Trainer_PLS_improved(Trainer_PLS):
             start_ep = self.resume()
             self.model.eval()
             self.val(start_ep)
+            which = self.args.alternate_ep[(start_ep-1)%len(self.args.alternate_ep)]
             preds = self.detect_noise(which)
             
         for eps in range(start_ep, epochs):
